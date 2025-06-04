@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Marketplace</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <video class="video-background" autoplay muted loop>
+    <source src="Background Video.mp4" type="video/mp4">
+  </video>
+  <div id="loginPage">
+    <div class="login-box">
+      <a href="https://elearning.unama.ac.id/" target="_blank">
+        <img src="Universitas-Dinamika-Bangsa-Jambi.png" alt="Logo Universitas" class="logo">
+      </a>
+      <h2>Forum Marketplace</h2>
+      <p>Universitas Dinamika Bangsa Jambi</p>
+      <form id="loginForm">
+        <input type="text" placeholder="NIM" required>
+        <input type="password" placeholder="Password" required>
+        <select required>
+          <option value="">Angkatan</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+        </select>
+        <select required>
+          <option value="">Kampus</option>
+          <option value="Thehok">Thehok</option>
+          <option value="Kota Baru">Kota Baru</option>
+        </select>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      // Simulasi login berhasil
+      window.location.href = "pesan.html";
+    });
+  </script>
+</body>
+</html>

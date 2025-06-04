@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forum Marketplace</title>
+  <link rel="stylesheet" href="keranjang.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="Universitas-Dinamika-Bangsa-Jambi.png" alt="Logo" />
+      <div class="text">
+        <h1>Forum Marketplace</h1>
+        <p>Universitas Dinamika Bangsa</p>
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a href="beranda.html">Beranda</a></li>
+      <li><a href="keranjang.html">Keranjang</a></li>
+      <li><a href="pesan.html">Pesan</a></li>
+      <li>Notifikasi</li>
+      <li>Profil</li>
+    </ul>
+    <div class="search-bar">
+      <input type="text" placeholder="Cari Lainnya..." />
+      <button>✕</button>
+    </div>
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-name">Zafan <br><span>zafan@email.com</span></div>
+    </div>
+  </header>
+
+  <!-- Form Buka Jasa -->
+  <main class="form-container">
+     <div class="form-card">
+    <div class="form-header">
+      <a href="beranda.html"><span>&larr; Tawaran baru</span></a>
+    </div>
+
+    <div class="form-list">
+      <div class="form-item"></div>
+      <div class="form-item"></div>
+      <div class="form-item"></div>
+      <div class="form-item"></div>
+    </div>
+  </div>
+  </main>
+
+  <div id="daftar-keranjang"></div>
+
+<script>
+  const isiKeranjang = document.getElementById('isi-keranjang');
+  const keranjang = JSON.parse(localStorage.getItem('keranjangList')) || [];
+
+  if (keranjang.length === 0) {
+    isiKeranjang.innerHTML = '<p>Keranjang masih kosong.</p>';
+  } else {
+    keranjang.forEach(item => {
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>Harga: ${item.price}</p>
+        <img src="${item.photo}" alt="${item.title}" style="max-width:150px;">
+        <hr style="margin: 20px 0;">
+      `;
+      isiKeranjang.appendChild(div);
+    });
+  }
+</script>
+
+<script>
+  const daftarKeranjang = document.getElementById('daftar-keranjang');
+  let keranjangList = JSON.parse(localStorage.getItem('keranjangList')) || [];
+
+  function renderKeranjang() {
+    daftarKeranjang.innerHTML = '';
+
+    if (keranjangList.length === 0) {
+      daftarKeranjang.innerHTML = '<p>Keranjang kosong.</p>';
+      return;
+    }
+
+    keranjangList.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>Harga: ${item.price}</p>
+        <img src="${item.photo}" alt="${item.title}" style="max-width:150px;">
+        <br>
+        <button onclick="hapusDariKeranjang(${index})">Hapus</button>
+        <hr>
+      `;
+      daftarKeranjang.appendChild(div);
+    });
+  }
+
+  function hapusDariKeranjang(index) {
+    if (confirm("Yakin ingin menghapus item ini dari keranjang?")) {
+      keranjangList.splice(index, 1); // hapus berdasarkan index
+      localStorage.setItem('keranjangList', JSON.stringify(keranjangList)); // simpan ulang
+      renderKeranjang(); // refresh tampilan
+    }
+  }
+
+  // Tampilkan data saat halaman dimuat
+  renderKeranjang();
+</script>
+
+  <!-- Bottom Menu -->
+  <footer class="bottom-menu">
+    <a href="#">Unggah Berita</a>
+    <a href="#">Pengaduan</a>
+    <a href="#">Beri Komentar</a>
+    <a href="#">Beri Dukungan</a>
+    <a href="donasi.html">Donasi</a>
+    <a href="#">Grub Whatsapp</a>
+    <a href="#">Instagram</a>
+  </footer>
+</body>
+</html>

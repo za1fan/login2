@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forum Marketplace</title>
+  <link rel="stylesheet" href="jual.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="Universitas-Dinamika-Bangsa-Jambi.png" alt="Logo" />
+      <div class="text">
+        <h1>Forum Marketplace</h1>
+        <p>Universitas Dinamika Bangsa</p>
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a href="beranda.html">Beranda</a></li>
+      <li>Keranjang</li>
+      <li><a href="pesan.html">Pesan</a></li>
+      <li>Notifikasi</li>
+      <li>Profil</li>
+    </ul>
+    <div class="search-bar">
+      <input type="text" placeholder="Cari Lainnya..." />
+      <button>✕</button>
+    </div>
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-name">Zafan <br><span>zafan@email.com</span></div>
+    </div>
+  </header>
+
+  <!-- Form Jual Barang -->
+  <main class="form-container">
+    <div class="form-card">
+      <div class="form-header">
+        <a href="beranda.html"><span>&larr; Tawaran baru</span></a>
+        <a href="beranda.html" id="publish-button">Publish</a>
+      </div>
+
+      <div class="upload-photo"> 
+        <label for="photo-upload" class="upload-circle">
+          <span>+</span>
+        </label>
+        <input type="file" id="photo-upload" accept="image/*" style="display: none;" />
+        <p>Tambahkan foto</p>
+        <div id="preview-photo"></div>
+      </div>
+
+      <form id="upload-form">
+        <input type="text" id="title" name="title" placeholder="Judul" required />
+        <input type="text" id="price" name="price" placeholder="Harga" required />
+        <select id="category" name="category" required>
+          <option value="">Kategori</option>
+          <option value="mobil">Mobil</option>
+          <option value="motor">Motor</option>
+          <option value="helm">Helm</option>
+          <option value="pc">PC</option>
+          <option value="laptop">Laptop</option>
+          <option value="tablet">Tablet</option>
+          <option value="handphone">Handphone</option>
+          <option value="kipas">Kipas</option>
+          <option value="fashion">Fashion</option>
+          <option value="makanan">Makanan & Minuman</option>
+        </select>
+        <select id="condition" name="condition" required>
+          <option value="">Kondisi</option>
+          <option value="baru">Baru</option>
+          <option value="bekas-seperti-baru">Bekas - Seperti Baru</option>
+          <option value="bekas-baik">Bekas - Baik</option>
+          <option value="bekas-cukup-baik">Bekas - Cukup Baik</option>
+        </select>
+        <textarea id="description" name="description" placeholder="Deskripsi" required></textarea>
+        <button type="submit">Unggah</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Bottom Menu -->
+  <footer class="bottom-menu">
+    <a href="#">Unggah Berita</a>
+    <a href="#">Pengaduan</a>
+    <a href="#">Beri Komentar</a>
+    <a href="#">Beri Dukungan</a>
+    <a href="donasi.html">Donasi</a>
+    <a href="#">Grub Whatsapp</a>
+    <a href="#">Instagram</a>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const inputPhoto = document.getElementById('photo-upload');
+    const preview = document.getElementById('preview-photo');
+    const form = document.getElementById('upload-form');
+    let photoDataURL = '';
+
+    // Preview gambar
+    inputPhoto.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          photoDataURL = e.target.result;
+          preview.innerHTML = `<img src="${photoDataURL}" alt="Preview" style="max-width:200px; max-height:200px;" />`;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Simpan data ke localStorage sebagai array
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const dataBaru = {
+        title: form.title.value,
+        price: form.price.value,
+        category: form.category.value,
+        condition: form.condition.value,
+        description: form.description.value,
+        photo: photoDataURL,
+      };
+
+      // Ambil data lama
+      const dataLama = JSON.parse(localStorage.getItem('mobilDataList')) || [];
+      dataLama.push(dataBaru);
+
+      // Simpan kembali ke localStorage
+      localStorage.setItem('mobilDataList', JSON.stringify(dataLama));
+
+      // Arahkan ke mobil.html
+      window.location.href = 'mobil.html';
+    });
+  </script>
+</body>
+</html>

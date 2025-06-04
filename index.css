@@ -1,0 +1,110 @@
+.video-background {
+  position: fixed;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: rgba(196, 113, 237, 0.2); /* warna semi-transparan */
+  backdrop-filter: blur(10px);          /* efek blur di belakang */
+  -webkit-backdrop-filter: blur(10px);  /* untuk dukungan di Safari */
+  
+  padding: 30px;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* opsional: efek pinggiran kaca */
+}
+
+.login-box img.logo {
+  width: 100px;
+  margin-bottom: 15px;
+  transition: width 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.login-box img.logo:hover {
+    width: 150px;
+    transform: scale(1.05);
+}
+
+.login-box h2 {
+  font-family: 'Comic Sans MS', cursive;
+  margin: 0;
+  font-size: 28px;
+}
+
+.login-box p {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.login-box input,
+.login-box select,
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login-box button {
+  background: orange;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.login-box button:hover {
+    background: rgb(255, 0, 157);
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-user {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .konten {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .posting {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .menu-aksi {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

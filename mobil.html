@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forum Marketplace</title>
+  <link rel="stylesheet" href="mobil.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="Universitas-Dinamika-Bangsa-Jambi.png" alt="Logo" />
+      <div class="text">
+        <h1>Forum Marketplace</h1>
+        <p>Universitas Dinamika Bangsa</p>
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a href="beranda.html">Beranda</a></li>
+      <li><a href="keranjang.html">Keranjang</a></li>
+      <li><a href="pesan.html">Pesan</a></li>
+      <li>Notifikasi</li>
+      <li>Profil</li>
+    </ul>
+    <div class="search-bar">
+      <input type="text" placeholder="Cari Lainnya..." />
+      <button>✕</button>
+    </div>
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-name">Zafan <br><span>zafan@email.com</span></div>
+    </div>
+  </header>
+
+  <main class="form-container">
+    <div class="form-card">
+        <h2 style="margin-bottom: 20px;">Detail Mobil</h2>
+        <div id="item-details"></div>
+        <a href="keranjang.html">
+    <button class="lihat-keranjang">Lihat Keranjang</button>
+  </a>
+    </div>
+  </main>
+
+  <script>
+    const itemDetails = document.getElementById('item-details');
+    const dataList = JSON.parse(localStorage.getItem('mobilDataList')) || [];
+
+    if (dataList.length > 0) {
+      itemDetails.innerHTML = dataList.map((data, index) => `
+        <div class="data-item">
+          ${data.photo ? `<img src="${data.photo}" alt="Foto Mobil" style="max-width:300px; max-height:300px; border-radius:8px; margin-bottom:12px;">` : ''}
+          <p><strong>Judul:</strong> ${data.title}</p>
+          <p><strong>Harga:</strong> ${data.price}</p>
+          <p><strong>Kategori:</strong> ${data.category}</p>
+          <p><strong>Kondisi:</strong> ${data.condition}</p>
+          <p><strong>Deskripsi:</strong> ${data.description}</p>
+          <button onclick="tambahKeKeranjang(${index})">Tambah ke Keranjang</button>
+          <hr style="margin: 30px 0;">
+        </div>
+      `).join('');
+    } else {
+      itemDetails.innerHTML = '<p>Tidak ada data mobil yang diunggah.</p>';
+    }
+
+    function tambahKeKeranjang(index) {
+      const semuaMobilBaru = JSON.parse(localStorage.getItem('mobilDataList')) || [];
+      const keranjangList = JSON.parse(localStorage.getItem('keranjangList')) || [];
+
+      if (semuaMobilBaru[index]) {
+        keranjangList.push(semuaMobilBaru[index]);
+        localStorage.setItem('keranjangList', JSON.stringify(keranjangList));
+        alert("Berhasil ditambahkan ke keranjang!");
+      } else {
+        alert("Data tidak ditemukan.");
+      }
+    }
+  </script>
+  
+
+  <!-- Bottom Menu -->
+  <footer class="bottom-menu">
+    <a href="#">Unggah Berita</a>
+    <a href="#">Pengaduan</a>
+    <a href="#">Beri Komentar</a>
+    <a href="#">Beri Dukungan</a>
+    <a href="donasi.html">Donasi</a>
+    <a href="#">Grub Whatsapp</a>
+    <a href="#">Instagram</a>
+  </footer>
+
+</body>
+</html>

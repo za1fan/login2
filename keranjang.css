@@ -1,0 +1,202 @@
+body {
+  margin: 0;
+  font-family: serif;
+  background-color: #eaf3fc;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #a1006b;
+  padding: 10px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.logo .text h1 {
+  margin: 0;
+  font-size: 20px;
+  color: white;
+}
+
+.logo .text p {
+  margin: 0;
+  font-size: 12px;
+  color: white;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  background-color: #dceeff;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.menu li {
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 25px;
+  margin: 0 5px;
+  font-size: 18px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.menu li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  transition: left 0.3s ease;
+  z-index: -1;
+  border-radius: 25px;
+}
+
+.menu li:hover::before {
+  left: 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 5px 10px;
+  background: white;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  background: transparent;
+}
+
+.search-bar button {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  background: #333;
+  border-radius: 50%;
+}
+
+.user-name {
+  font-size: 14px;
+}
+
+.user-name span {
+  font-size: 12px;
+  color: gray;
+}
+
+.form-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Daftar keranjang */
+#daftar-keranjang {
+  margin-top: 20px;
+}
+
+#daftar-keranjang div {
+  background-color: #eef4fb;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  text-align: center; /* tulisan tengah */
+}
+
+#daftar-keranjang h3 {
+  margin: 0 0 10px;
+}
+
+#daftar-keranjang p {
+  margin: 0 0 10px;
+  font-weight: bold;
+  color: #0073e6;
+}
+
+/* Gambar */
+#daftar-keranjang img {
+  max-width: 150px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* Tombol hapus */
+#daftar-keranjang button {
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+#daftar-keranjang button:hover {
+  background-color: #990000;
+}
+
+/* Footer bottom menu */
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  flex-wrap: wrap;
+  z-index: 999;
+}
+
+.bottom-menu button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  transition: color 0.3s ease;
+}
+
+.bottom-menu button:hover {
+  color: #ffcc00;
+}
